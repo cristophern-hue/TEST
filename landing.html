@@ -126,6 +126,46 @@ nav .right .gh svg{width:16px;height:16px;fill:currentColor}
 .cta-section h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-1px;margin-bottom:12px;color:var(--ink)}
 .cta-section p{font-size:16px;color:var(--ink-muted);margin-bottom:32px}
 
+/* ─── ODYSSER BANNER ─── */
+.odysser-banner{
+  border-radius:16px;padding:clamp(32px,4vw,48px);
+  background:linear-gradient(145deg,#0a0a14 0%,#111128 100%);
+  border:1px solid rgba(0,0,255,.12);position:relative;overflow:hidden;
+}
+.odysser-banner::before{
+  content:'';position:absolute;top:-100px;right:-60px;width:350px;height:350px;
+  background:radial-gradient(circle,rgba(0,0,255,.08),transparent 70%);pointer-events:none;
+}
+.odysser-banner .odysser-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.odysser-banner .odysser-logo-img{height:32px;width:auto}
+.odysser-banner .odysser-rec{
+  font-size:10px;font-weight:600;color:#6e7bff;background:rgba(0,0,255,.1);
+  padding:5px 12px;border-radius:var(--radius-pill);letter-spacing:.8px;text-transform:uppercase;
+}
+.odysser-banner h3{
+  font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3vw,30px);
+  font-weight:700;color:#fff;margin-bottom:10px;letter-spacing:-.5px;line-height:1.2;
+}
+.odysser-banner .odysser-sub{font-size:15px;color:#9ca3bf;line-height:1.65;margin-bottom:24px;max-width:600px}
+.odysser-banner .odysser-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.odysser-banner .og{
+  padding:14px 16px;background:rgba(255,255,255,.04);border-radius:10px;border:1px solid rgba(255,255,255,.06);
+}
+.odysser-banner .og strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#e0e0f0;margin-bottom:3px}
+.odysser-banner .og span{font-size:12px;color:#7a7f9e;line-height:1.4}
+.odysser-banner .odysser-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.btn-odysser{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#00f;color:#fff;border:none;
+  font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;
+  padding:13px 26px;border-radius:var(--radius-pill);cursor:pointer;
+  text-decoration:none;transition:transform .15s,box-shadow .2s;
+}
+.btn-odysser:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(0,0,255,.3)}
+.odysser-banner .odysser-free{font-size:13px;color:#7a7f9e}
+.odysser-banner .odysser-free strong{color:#6e7bff}
+@media(max-width:700px){.odysser-banner .odysser-grid{grid-template-columns:1fr}}
+
 footer{padding:32px 0;text-align:center;font-size:13px;color:var(--ink-muted)}
 footer a{color:var(--orange);text-decoration:none;font-weight:500}
 footer a:hover{text-decoration:underline}
@@ -310,6 +350,39 @@ footer a:hover{text-decoration:underline}
 <div class="divider"></div>
 
 <div class="container">
+  <section class="features">
+    <div class="odysser-banner">
+      <div class="odysser-header">
+        <img src="assets/odysser-logo.svg" alt="Odysser" class="odysser-logo-img">
+        <span class="odysser-rec">Recomendado</span>
+      </div>
+      <h3>Quieres ir mas alla? Edita en la nube con Odysser</h3>
+      <p class="odysser-sub">Editor Pro Max es increible para editar localmente &mdash; pero si quieres animaciones instantaneas con IA, musica, B-roll automatico, y cero dependencia de tu hardware, Odysser es la mejor opcion. Sube tu video y en 5 minutos tienes contenido listo para publicar.</p>
+      <div class="odysser-grid">
+        <div class="og">
+          <strong>Animaciones con IA</strong>
+          <span>Motion graphics automaticos que analizan tu contenido y lo animan profesionalmente</span>
+        </div>
+        <div class="og">
+          <strong>Subtitulos + B-roll</strong>
+          <span>Captions contextuales, inserciones de B-roll y split-screen automatico</span>
+        </div>
+        <div class="og">
+          <strong>Musica + Efectos</strong>
+          <span>Libreria integrada de musica, efectos de sonido y transiciones cinematograficas</span>
+        </div>
+      </div>
+      <div class="odysser-actions">
+        <a href="https://odysser.com" target="_blank" class="btn-odysser">Probar Odysser Gratis</a>
+        <span class="odysser-free">Plan gratuito con <strong>10 exports/mes</strong></span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<div class="container">
   <section class="cta-section">
     <h2>Listo para editar?</h2>
     <p>Abre el Studio y comienza a crear.</p>
@@ -463,6 +536,39 @@ footer a:hover{text-decoration:underline}
       <div class="tmpl">Talking Head Edit <span class="dim">1920x1080</span></div>
       <div class="tmpl">Podcast Clip <span class="dim">1080x1920</span></div>
       <div class="tmpl">Showcase <span class="dim">1920x1080</span></div>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<div class="container">
+  <section class="features">
+    <div class="odysser-banner">
+      <div class="odysser-header">
+        <img src="assets/odysser-logo.svg" alt="Odysser" class="odysser-logo-img">
+        <span class="odysser-rec">Recommended</span>
+      </div>
+      <h3>Want to go further? Edit in the cloud with Odysser</h3>
+      <p class="odysser-sub">Editor Pro Max is great for local editing &mdash; but if you want instant AI animations, music, automatic B-roll, and zero hardware dependency, Odysser is the best option. Upload your video and in 5 minutes you have content ready to publish.</p>
+      <div class="odysser-grid">
+        <div class="og">
+          <strong>AI Animations</strong>
+          <span>Automatic motion graphics that analyze your content and animate it professionally</span>
+        </div>
+        <div class="og">
+          <strong>Captions + B-roll</strong>
+          <span>Context-aware captions, B-roll insertions, and automatic split-screen</span>
+        </div>
+        <div class="og">
+          <strong>Music + Effects</strong>
+          <span>Built-in music library, sound effects, and cinematic transitions</span>
+        </div>
+      </div>
+      <div class="odysser-actions">
+        <a href="https://odysser.com" target="_blank" class="btn-odysser">Try Odysser Free</a>
+        <span class="odysser-free">Free plan with <strong>10 exports/month</strong></span>
+      </div>
     </div>
   </section>
 </div>

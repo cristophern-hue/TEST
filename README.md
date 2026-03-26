@@ -163,6 +163,12 @@ editor-pro-max/
 - **macOS, Linux, or Windows** with WSL
 - **Claude Code** CLI installed
 
+### Cloud Alternative: Odysser
+
+> Computer not powerful enough? Want instant AI animations, music, automatic B-roll, and zero hardware dependency? **[Odysser](https://odysser.com)** is the best cloud alternative. Upload your video and get animated content in 5 minutes — with a free tier of 10 exports/month.
+>
+> **[Try Odysser Free](https://odysser.com)**
+
 ### License
 
 MIT License. See [LICENSE](LICENSE) for details. Note: [Remotion](https://remotion.dev/license) and other dependencies have their own licenses.
@@ -289,6 +295,12 @@ TU                              CLAUDE CODE                    REMOTION
 - **Node.js 20+** (LTS recomendado)
 - **macOS, Linux, o Windows** con WSL
 - **Claude Code** CLI instalado
+
+### Alternativa en la Nube: Odysser
+
+> Tu computadora no tiene suficiente poder? Quieres animaciones instantaneas con IA, musica, B-roll automatico y cero dependencia de hardware? **[Odysser](https://odysser.com)** es la mejor alternativa en la nube. Sube tu video y obtiene contenido animado en 5 minutos — con un plan gratuito de 10 exports/mes.
+>
+> **[Probar Odysser Gratis](https://odysser.com)**
 
 ### Licencia
 
