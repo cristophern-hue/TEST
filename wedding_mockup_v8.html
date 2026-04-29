@@ -1,0 +1,400 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;1,300&family=Jost:wght@300;400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+@keyframes sway-r{0%,100%{transform:rotate(0deg);}50%{transform:rotate(2.5deg);}}
+@keyframes sway-l{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-2.5deg);}}
+@keyframes sway-b{0%,100%{transform:translateX(-50%) rotate(0deg);}50%{transform:translateX(-50%) rotate(1.8deg);}}
+@keyframes sway-r2{0%,100%{transform:rotate(0deg);}50%{transform:rotate(1.8deg);}}
+@keyframes sway-l2{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-1.8deg);}}
+@keyframes sw1{0%,100%{transform:rotate(0deg);}50%{transform:rotate(2.2deg);}}
+@keyframes sw2{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-1.8deg);}}
+@keyframes sw3{0%,100%{transform:rotate(0deg);}50%{transform:rotate(1.5deg);}}
+@keyframes sw4{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-2deg);}}
+@keyframes bounce-arrow{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+@keyframes music-dance{0%,100%{transform:rotate(-8deg);}50%{transform:rotate(8deg);}}
+
+.w{font-family:'Jost',sans-serif;background:#f8f6f1;border-radius:16px;overflow:hidden;border:1px solid #e8ddd0;max-width:370px;margin:0 auto;color:#2a2a2a;}
+.music-player{position:fixed;top:16px;right:16px;z-index:1000;background:rgba(245,240,232,0.92);backdrop-filter:blur(8px);border:1px solid #c9a96e;border-radius:50px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(107,79,58,0.15);}
+.music-note{font-size:18px;animation:music-dance 1.2s ease-in-out infinite;display:inline-block;}
+
+.hero{position:relative;background:#f8f6f1;text-align:center;overflow:hidden;padding-bottom:32px;border-bottom:1px solid #e8ddd0;}
+.euca-r{position:absolute;top:-6px;right:-8px;width:200px;opacity:0.92;transform-origin:top right;animation:sway-r 6s ease-in-out infinite;}
+.euca-l{position:absolute;top:-6px;left:-8px;width:130px;opacity:0.78;transform-origin:top left;animation:sway-l 7s ease-in-out infinite;}
+.euca-r2{position:absolute;top:90px;right:-15px;width:100px;opacity:0.50;transform-origin:top right;animation:sway-r2 8s ease-in-out infinite;}
+.euca-l2{position:absolute;top:110px;left:-12px;width:80px;opacity:0.42;transform-origin:top left;animation:sway-l2 9s ease-in-out infinite;}
+.euca-b{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:220px;opacity:0.75;transform-origin:bottom center;animation:sway-b 8s ease-in-out infinite;}
+.names-img{position:relative;z-index:2;width:min(290px,82vw);display:block;margin:90px auto 0;mix-blend-mode:multiply;}
+.scroll-arrow{position:relative;z-index:2;margin-top:12px;color:#6b8f5e;font-size:22px;animation:bounce-arrow 1.8s ease-in-out infinite;cursor:pointer;display:block;}
+.divider-line{width:60px;height:1px;background:linear-gradient(to right,transparent,#c9a96e,transparent);margin:16px auto;}
+.llegó-lbl{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:#8a9e7e;margin-bottom:7px;position:relative;z-index:2;}
+.llegó-frase{font-family:'Cormorant',serif;font-style:italic;font-size:14px;color:#555;line-height:1.78;max-width:265px;margin:0 auto 22px;position:relative;z-index:2;}
+.hero-photo-wrap{border-radius:10px;overflow:hidden;border:1.5px solid #c9a96e;margin:0 4px 22px;position:relative;z-index:2;}
+.hero-photo-ph{width:100%;height:220px;background:linear-gradient(135deg,#ede5d8,#d9cfc0);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;}
+.cd{display:flex;justify-content:center;padding:4px 0 4px;position:relative;z-index:2;}
+.cd-item{text-align:center;flex:1;}
+.cd-num{font-family:'Cormorant',serif;font-size:40px;font-weight:300;color:#1a1a1a;line-height:1;}
+.cd-lbl{font-size:8px;letter-spacing:0.16em;text-transform:uppercase;color:#8a9e7e;margin-top:2px;}
+.cd-sep{font-family:'Cormorant',serif;font-size:30px;color:#c9a96e;padding-top:4px;}
+
+.sec{padding:26px 26px;border-bottom:1px solid #e8ddd0;text-align:center;background:#f8f6f1;position:relative;overflow:hidden;}
+.sec.alt{background:#f2ede4;}
+.sec-lbl{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:#8a9e7e;margin-bottom:7px;}
+.sec-title{font-family:'Cormorant',serif;font-size:24px;font-style:italic;font-weight:300;color:#1a1a1a;margin-bottom:10px;}
+.sec-text{font-size:12px;color:#555;line-height:1.88;}
+.ev-name{font-family:'Cormorant',serif;font-size:26px;font-style:italic;font-weight:300;color:#1a1a1a;margin-bottom:8px;}
+.ev-detail{font-size:12px;color:#555;line-height:1.88;}
+.btn{display:inline-block;margin-top:14px;padding:10px 26px;background:#8a9e7e;color:white;border-radius:50px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;}
+.btn-outline{display:inline-block;margin-top:10px;padding:9px 22px;border:1px solid #8a9e7e;border-radius:50px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5e7254;cursor:pointer;text-decoration:none;}
+.btn-sage{display:inline-block;margin-top:10px;padding:9px 22px;border:1px solid #8a9e7e;border-radius:50px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5e7254;cursor:pointer;}
+.dropdown{overflow:hidden;max-height:0;transition:max-height 0.4s ease;text-align:left;}
+.dropdown.open{max-height:300px;}
+.cal-list,.gift-list{margin-top:12px;border:1px solid rgba(201,169,110,0.28);border-radius:12px;overflow:hidden;}
+.cal-item,.gift-row-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid rgba(201,169,110,0.14);font-size:12px;color:#555;text-decoration:none;background:#f8f6f1;}
+.cal-item:last-child,.gift-row-item:last-child{border-bottom:none;}
+.gift-row-item{justify-content:space-between;}
+.gift-row-item strong{color:#1a1a1a;font-weight:500;}
+.chevron{display:inline-block;transition:transform 0.3s;margin-left:6px;font-size:10px;}
+.chevron.open{transform:rotate(180deg);}
+.footer{background:#f8f6f1;border-top:1px solid #e8ddd0;padding:30px 28px 28px;text-align:center;position:relative;overflow:hidden;}
+.footer-divider{width:40px;height:1px;background:linear-gradient(to right,transparent,#c9a96e,transparent);margin:0 auto 14px;}
+.footer-names{font-family:'Cormorant',serif;font-size:22px;font-weight:300;font-style:italic;color:#1a1a1a;}
+.footer-date{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#8a9e7e;margin:8px 0;}
+.footer-heart{color:#c4846a;font-size:14px;margin:6px 0;}
+.footer-thanks{font-family:'Cormorant',serif;font-style:italic;font-size:13px;color:#888;line-height:1.7;}
+.sprig{position:absolute;pointer-events:none;}
+</style>
+
+<div class="music-player" onclick="toggleMusic()"><span class="music-note" id="mn">♪</span></div>
+<audio id="bgMusic" loop><source src="https://drive.google.com/uc?export=download&id=1TIgcfpz60_fsa5TpgqxerjdFlXCy5Ezb" type="audio/mpeg"/></audio>
+
+<div class="w">
+  <div class="hero">
+    <!-- Eucalipto derecha grande -->
+    <svg class="euca-r" viewBox="0 0 200 200" fill="none">
+      <path d="M195 2 Q168 28 148 54 Q128 82 114 112 Q102 136 96 168" stroke="#6b8f5e" stroke-width="1.4" fill="none"/>
+      <path d="M155 50 Q172 40 178 50" stroke="#7a9e6a" stroke-width="1" fill="none"/>
+      <path d="M140 72 Q158 60 166 70" stroke="#7a9e6a" stroke-width="1" fill="none"/>
+      <path d="M126 96 Q144 84 152 94" stroke="#7a9e6a" stroke-width="1" fill="none"/>
+      <path d="M114 118 Q132 106 139 116" stroke="#7a9e6a" stroke-width="1" fill="none"/>
+      <ellipse cx="181" cy="47" rx="15" ry="12" fill="#7aac6a" opacity="0.80" transform="rotate(22 181 47)"/>
+      <ellipse cx="170" cy="67" rx="14" ry="11" fill="#5e8f52" opacity="0.74" transform="rotate(16 170 67)"/>
+      <ellipse cx="155" cy="89" rx="14" ry="11" fill="#7aac6a" opacity="0.70" transform="rotate(10 155 89)"/>
+      <ellipse cx="142" cy="110" rx="13" ry="10" fill="#5e8f52" opacity="0.66" transform="rotate(5 142 110)"/>
+      <ellipse cx="130" cy="130" rx="13" ry="10" fill="#7aac6a" opacity="0.62" transform="rotate(0 130 130)"/>
+      <ellipse cx="162" cy="57" rx="14" ry="10" fill="#a8c99a" opacity="0.54" transform="rotate(-32 162 57)"/>
+      <ellipse cx="148" cy="78" rx="13" ry="9.5" fill="#a8c99a" opacity="0.48" transform="rotate(-26 148 78)"/>
+      <path d="M195 2 Q178 12 162 17" stroke="#6b8f5e" stroke-width="1.2" fill="none"/>
+      <ellipse cx="156" cy="15" rx="13" ry="9" fill="#7aac6a" opacity="0.70" transform="rotate(-42 156 15)"/>
+      <ellipse cx="172" cy="8" rx="12" ry="8" fill="#a8c99a" opacity="0.52" transform="rotate(-56 172 8)"/>
+    </svg>
+
+    <!-- Eucalipto izquierda grande -->
+    <svg class="euca-l" viewBox="0 0 140 180" fill="none">
+      <path d="M6 4 Q28 30 48 60 Q64 86 72 120" stroke="#8aaf78" stroke-width="1.3" fill="none"/>
+      <path d="M42 56 Q26 46 18 56" stroke="#7a9e6a" stroke-width="1" fill="none"/>
+      <path d="M56 78 Q38 66 30 76" stroke="#7a9e6a" stroke-width="1" fill="none"/>
+      <ellipse cx="14" cy="54" rx="14" ry="10" fill="#7aac6a" opacity="0.70" transform="rotate(-22 14 54)"/>
+      <ellipse cx="26" cy="74" rx="13" ry="9.5" fill="#5e8f52" opacity="0.64" transform="rotate(-16 26 74)"/>
+      <ellipse cx="40" cy="96" rx="13" ry="9" fill="#a8c99a" opacity="0.55" transform="rotate(-10 40 96)"/>
+      <ellipse cx="32" cy="62" rx="12" ry="8.5" fill="#a8c99a" opacity="0.46" transform="rotate(26 32 62)"/>
+    </svg>
+
+    <!-- Eucalipto derecha secundario -->
+    <svg class="euca-r2" viewBox="0 0 100 140" fill="none">
+      <path d="M95 5 Q78 25 65 48 Q54 68 50 95" stroke="#7a9e6a" stroke-width="1.1" fill="none"/>
+      <ellipse cx="82" cy="44" rx="11" ry="8" fill="#7aac6a" opacity="0.65" transform="rotate(20 82 44)"/>
+      <ellipse cx="74" cy="62" rx="10" ry="7.5" fill="#a8c99a" opacity="0.55" transform="rotate(14 74 62)"/>
+      <ellipse cx="66" cy="80" rx="10" ry="7" fill="#7aac6a" opacity="0.50" transform="rotate(8 66 80)"/>
+    </svg>
+
+    <!-- Eucalipto izquierda secundario -->
+    <svg class="euca-l2" viewBox="0 0 90 130" fill="none">
+      <path d="M5 5 Q22 25 35 48 Q46 68 50 95" stroke="#7a9e6a" stroke-width="1" fill="none"/>
+      <ellipse cx="13" cy="44" rx="10" ry="7.5" fill="#7aac6a" opacity="0.60" transform="rotate(-20 13 44)"/>
+      <ellipse cx="22" cy="62" rx="9" ry="7" fill="#a8c99a" opacity="0.50" transform="rotate(-14 22 62)"/>
+      <ellipse cx="32" cy="80" rx="9" ry="6.5" fill="#7aac6a" opacity="0.45" transform="rotate(-8 32 80)"/>
+    </svg>
+
+    <!-- Eucalipto abajo -->
+    <svg class="euca-b" viewBox="0 0 220 80" fill="none">
+      <path d="M110 78 Q90 58 70 47 Q52 37 34 42" stroke="#6b8f5e" stroke-width="1.3" fill="none"/>
+      <path d="M110 78 Q130 58 150 47 Q168 37 186 42" stroke="#6b8f5e" stroke-width="1.3" fill="none"/>
+      <ellipse cx="64" cy="46" rx="14" ry="10" fill="#7aac6a" opacity="0.74" transform="rotate(22 64 46)"/>
+      <ellipse cx="44" cy="41" rx="13" ry="9" fill="#5e8f52" opacity="0.64" transform="rotate(32 44 41)"/>
+      <ellipse cx="156" cy="46" rx="14" ry="10" fill="#7aac6a" opacity="0.74" transform="rotate(-22 156 46)"/>
+      <ellipse cx="176" cy="41" rx="13" ry="9" fill="#5e8f52" opacity="0.64" transform="rotate(-32 176 41)"/>
+      <ellipse cx="78" cy="55" rx="12" ry="8" fill="#a8c99a" opacity="0.52" transform="rotate(12 78 55)"/>
+      <ellipse cx="142" cy="55" rx="12" ry="8" fill="#a8c99a" opacity="0.52" transform="rotate(-12 142 55)"/>
+      <circle cx="110" cy="78" r="3" fill="#c9a96e" opacity="0.55"/>
+    </svg>
+
+    <img class="names-img" src="https://i.imgur.com/DQ36kpj.jpeg" alt="Lara y Lautaro"/>
+    <div class="scroll-arrow">&#8964;</div>
+
+    <div style="position:relative;z-index:2;padding:0 28px;">
+      <div class="divider-line"></div>
+      <div class="llegó-lbl">Llegó el gran día</div>
+      <div class="llegó-frase">Nos conocimos cuando no era el momento... nos reencontramos cuando sí lo era.</div>
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-ph">
+          <div style="font-size:26px;">📷</div>
+          <div style="font-size:11px;color:#7a6355;">su foto aquí</div>
+        </div>
+      </div>
+      <div class="cd">
+        <div class="cd-item"><div class="cd-num" id="d">-</div><div class="cd-lbl">Días</div></div>
+        <div class="cd-sep">·</div>
+        <div class="cd-item"><div class="cd-num" id="h">-</div><div class="cd-lbl">Horas</div></div>
+        <div class="cd-sep">·</div>
+        <div class="cd-item"><div class="cd-num" id="mi">-</div><div class="cd-lbl">Min</div></div>
+        <div class="cd-sep">·</div>
+        <div class="cd-item"><div class="cd-num" id="s">-</div><div class="cd-lbl">Seg</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NUESTRA BODA — ramita larga tipo junco derecha + hojitas redondas izquierda -->
+  <div class="sec">
+    <!-- ramita tipo junco derecha -->
+    <svg class="sprig" style="top:6px;right:-3px;width:36px;opacity:0.26;transform-origin:top right;animation:sw1 9s ease-in-out infinite;" viewBox="0 0 38 100" fill="none">
+      <path d="M36 2 Q28 22 24 44 Q20 66 20 90" stroke="#7a9470" stroke-width="1.1" fill="none"/>
+      <path d="M24 22 Q34 16 36 24" stroke="#8aaf78" stroke-width="0.9" fill="none"/>
+      <path d="M22 42 Q32 36 35 44" stroke="#8aaf78" stroke-width="0.9" fill="none"/>
+      <path d="M21 62 Q30 56 33 64" stroke="#8aaf78" stroke-width="0.8" fill="none"/>
+      <ellipse cx="35" cy="20" rx="5" ry="9" fill="#a8c99a" opacity="0.9" transform="rotate(15 35 20)"/>
+      <ellipse cx="34" cy="40" rx="5" ry="9" fill="#7aac6a" opacity="0.85" transform="rotate(20 34 40)"/>
+      <ellipse cx="32" cy="60" rx="4.5" ry="8" fill="#a8c99a" opacity="0.8" transform="rotate(18 32 60)"/>
+    </svg>
+    <!-- hojitas redondas izquierda -->
+    <svg class="sprig" style="top:20px;left:-3px;width:32px;opacity:0.22;transform-origin:top left;animation:sw2 11s ease-in-out infinite;" viewBox="0 0 34 85" fill="none">
+      <path d="M2 2 Q10 18 13 36 Q16 54 16 76" stroke="#8aaf78" stroke-width="1" fill="none"/>
+      <ellipse cx="9" cy="16" rx="9" ry="6.5" fill="#7aac6a" opacity="0.9" transform="rotate(-22 9 16)"/>
+      <ellipse cx="13" cy="34" rx="8" ry="6" fill="#5e8f52" opacity="0.85" transform="rotate(-14 13 34)"/>
+      <ellipse cx="15" cy="52" rx="7.5" ry="5.5" fill="#a8c99a" opacity="0.8" transform="rotate(-8 15 52)"/>
+    </svg>
+    <svg width="68" height="62" viewBox="0 0 68 62" fill="none" style="margin-bottom:8px;">
+      <circle cx="25" cy="36" r="16" stroke="#2a2a2a" stroke-width="1.2" fill="none"/>
+      <circle cx="43" cy="36" r="16" stroke="#2a2a2a" stroke-width="1.2" fill="none"/>
+      <path d="M34 7 L30 13 L34 18 L38 13 Z" stroke="#2a2a2a" stroke-width="1" fill="none"/>
+      <path d="M30 13 L38 13" stroke="#2a2a2a" stroke-width="0.8"/>
+      <path d="M34 18 L34 24" stroke="#2a2a2a" stroke-width="1"/>
+      <path d="M34 19 Q27 12 31 8 Q35 4 34 13" stroke="#2a2a2a" stroke-width="0.9" fill="none"/>
+      <path d="M34 19 Q41 12 37 8 Q33 4 34 13" stroke="#2a2a2a" stroke-width="0.9" fill="none"/>
+    </svg>
+    <div class="sec-lbl">Nuestra Boda</div>
+    <div class="sec-title">Los detalles del gran día</div>
+    <div class="divider-line"></div>
+    <div class="ev-name">La Fiesta</div>
+    <div class="ev-detail"><strong>Sábado 28 de Noviembre, 2026</strong><br/>18:00 horas<br/><br/><strong>Jano's San Justo 2</strong><br/>Arribeños 4199<br/>Villa Luzuriaga, Pcia. de Bs. As.</div>
+    <a href="https://maps.app.goo.gl/A12wFEKhG7KG8k5d8" target="_blank" class="btn-outline" style="margin-top:14px;">Cómo llegar</a>
+  </div>
+
+  <!-- RSVP — hojitas alargadas tipo sauce derecha + ramitas cortas izquierda -->
+  <div class="sec alt">
+    <svg class="sprig" style="top:8px;right:-3px;width:30px;opacity:0.22;transform-origin:top right;animation:sw3 10s ease-in-out infinite;" viewBox="0 0 32 80" fill="none">
+      <path d="M30 2 Q22 18 18 36 Q14 56 14 74" stroke="#8aaf78" stroke-width="1" fill="none"/>
+      <ellipse cx="22" cy="18" rx="4" ry="10" fill="#7aac6a" opacity="0.9" transform="rotate(12 22 18)"/>
+      <ellipse cx="17" cy="36" rx="3.5" ry="9" fill="#a8c99a" opacity="0.85" transform="rotate(8 17 36)"/>
+      <ellipse cx="15" cy="54" rx="3.5" ry="8.5" fill="#7aac6a" opacity="0.80" transform="rotate(4 15 54)"/>
+    </svg>
+    <svg class="sprig" style="top:14px;left:-3px;width:28px;opacity:0.20;transform-origin:top left;animation:sw4 12s ease-in-out infinite;" viewBox="0 0 30 75" fill="none">
+      <path d="M2 2 Q8 14 11 28 Q14 44 14 66" stroke="#8aaf78" stroke-width="1" fill="none"/>
+      <path d="M10 13 Q4 8 2 14" stroke="#7a9e6a" stroke-width="0.8" fill="none"/>
+      <path d="M12 28 Q6 22 4 28" stroke="#7a9e6a" stroke-width="0.8" fill="none"/>
+      <path d="M13 44 Q7 38 5 44" stroke="#7a9e6a" stroke-width="0.8" fill="none"/>
+      <ellipse cx="2" cy="12" rx="5" ry="3" fill="#a8c99a" opacity="0.9" transform="rotate(-30 2 12)"/>
+      <ellipse cx="4" cy="26" rx="5" ry="3" fill="#7aac6a" opacity="0.85" transform="rotate(-25 4 26)"/>
+      <ellipse cx="5" cy="42" rx="4.5" ry="2.8" fill="#a8c99a" opacity="0.80" transform="rotate(-20 5 42)"/>
+    </svg>
+    <svg width="36" height="32" viewBox="0 0 36 32" fill="none" style="margin-bottom:8px;">
+      <rect x="3" y="6" width="30" height="22" rx="3" stroke="#2a2a2a" stroke-width="1.2" fill="none"/>
+      <path d="M3 12 L18 21 L33 12" stroke="#2a2a2a" stroke-width="1.2" fill="none"/>
+    </svg>
+    <div class="sec-lbl">RSVP</div>
+    <div class="sec-title">¿Vas a poder venir?</div>
+    <div class="sec-text">Confirmanos tu asistencia hasta el <strong>28/10/2026</strong>.</div>
+    <div class="btn">Confirmar asistencia</div>
+  </div>
+
+  <!-- AGENDAR — hojitas redondas pequeñas ambos lados -->
+  <div class="sec">
+    <svg class="sprig" style="top:10px;right:-3px;width:32px;opacity:0.22;transform-origin:top right;animation:sw1 11s ease-in-out infinite;" viewBox="0 0 34 85" fill="none">
+      <path d="M32 2 Q24 18 20 36 Q16 56 16 78" stroke="#8aaf78" stroke-width="1" fill="none"/>
+      <ellipse cx="24" cy="17" rx="9" ry="6" fill="#5e8f52" opacity="0.9" transform="rotate(20 24 17)"/>
+      <ellipse cx="19" cy="35" rx="8.5" ry="5.5" fill="#7aac6a" opacity="0.85" transform="rotate(14 19 35)"/>
+      <ellipse cx="17" cy="54" rx="8" ry="5" fill="#5e8f52" opacity="0.80" transform="rotate(8 17 54)"/>
+    </svg>
+    <svg class="sprig" style="top:6px;left:-3px;width:28px;opacity:0.20;transform-origin:top left;animation:sw2 13s ease-in-out infinite;" viewBox="0 0 30 75" fill="none">
+      <path d="M2 2 Q9 16 12 32 Q15 50 15 70" stroke="#7a9e6a" stroke-width="1" fill="none"/>
+      <ellipse cx="8" cy="15" rx="7" ry="5" fill="#a8c99a" opacity="0.9" transform="rotate(-18 8 15)"/>
+      <ellipse cx="12" cy="31" rx="6.5" ry="4.5" fill="#7aac6a" opacity="0.85" transform="rotate(-10 12 31)"/>
+      <ellipse cx="14" cy="48" rx="6" ry="4" fill="#a8c99a" opacity="0.80" transform="rotate(-4 14 48)"/>
+    </svg>
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="margin-bottom:8px;">
+      <rect x="4" y="6" width="26" height="24" rx="3" stroke="#2a2a2a" stroke-width="1.2" fill="none"/>
+      <path d="M4 13 L30 13" stroke="#2a2a2a" stroke-width="1.1"/>
+      <line x1="11" y1="4" x2="11" y2="9" stroke="#2a2a2a" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="23" y1="4" x2="23" y2="9" stroke="#2a2a2a" stroke-width="1.4" stroke-linecap="round"/>
+      <circle cx="11" cy="20" r="1.7" fill="#2a2a2a" opacity="0.4"/>
+      <circle cx="17" cy="20" r="1.7" fill="#2a2a2a" opacity="0.4"/>
+      <circle cx="23" cy="20" r="1.7" fill="#2a2a2a" opacity="0.4"/>
+      <circle cx="11" cy="26" r="1.7" fill="#2a2a2a" opacity="0.28"/>
+      <circle cx="17" cy="26" r="1.7" fill="#2a2a2a" opacity="0.28"/>
+    </svg>
+    <div class="sec-lbl">Agendá la fecha</div>
+    <div class="sec-title">¡Que no se te pase!</div>
+    <div class="sec-text">Agregalo a tu calendario favorito.</div>
+    <div class="btn-outline" onclick="toggleDrop('cal','cc')" style="margin-top:12px;">Agendar evento <span class="chevron" id="cc">▼</span></div>
+    <div class="dropdown" id="cal">
+      <div class="cal-list">
+        <a class="cal-item" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Casamiento+Lara+%26+Lautaro&dates=20261128T210000Z/20261129T040000Z" target="_blank">📅 Google Calendar</a>
+        <a class="cal-item" href="https://outlook.live.com/calendar/0/deeplink/compose?subject=Casamiento+Lara+%26+Lautaro&startdt=2026-11-28T18:00:00&enddt=2026-11-29T01:00:00" target="_blank">🗓️ Outlook</a>
+        <a class="cal-item" href="https://outlook.office.com/calendar/0/deeplink/compose?subject=Casamiento+Lara+%26+Lautaro&startdt=2026-11-28T18:00:00" target="_blank">💼 Microsoft 365</a>
+        <a class="cal-item" href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20261128T210000Z%0ADTEND:20261129T040000Z%0ASUMMARY:Casamiento Lara y Lautaro%0ALOCATION:Janos San Justo 2%0AEND:VEVENT%0AEND:VCALENDAR" download="casamiento.ics">🍎 Apple / iCal</a>
+        <a class="cal-item" href="https://calendar.yahoo.com/?v=60&title=Casamiento+Lara+%26+Lautaro&st=20261128T210000Z&dur=0700" target="_blank">📆 Yahoo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRESS CODE — ramita tipo sauce larga derecha + hojitas triangulares izquierda -->
+  <div class="sec alt">
+    <svg class="sprig" style="top:8px;right:-3px;width:28px;opacity:0.22;transform-origin:top right;animation:sw4 9s ease-in-out infinite;" viewBox="0 0 30 80" fill="none">
+      <path d="M28 2 Q22 16 19 32 Q16 50 16 72" stroke="#7a9470" stroke-width="1" fill="none"/>
+      <path d="M19 14 Q27 10 28 16" stroke="#8aaf78" stroke-width="0.8" fill="none"/>
+      <path d="M18 30 Q26 26 27 32" stroke="#8aaf78" stroke-width="0.8" fill="none"/>
+      <path d="M17 48 Q24 44 25 50" stroke="#8aaf78" stroke-width="0.8" fill="none"/>
+      <ellipse cx="27" cy="13" rx="4" ry="7" fill="#7aac6a" opacity="0.9" transform="rotate(18 27 13)"/>
+      <ellipse cx="26" cy="29" rx="3.8" ry="7" fill="#a8c99a" opacity="0.85" transform="rotate(20 26 29)"/>
+      <ellipse cx="25" cy="47" rx="3.5" ry="6.5" fill="#7aac6a" opacity="0.80" transform="rotate(18 25 47)"/>
+    </svg>
+    <svg class="sprig" style="top:12px;left:-3px;width:26px;opacity:0.20;transform-origin:top left;animation:sw3 14s ease-in-out infinite;" viewBox="0 0 28 72" fill="none">
+      <path d="M2 2 Q7 14 10 28 Q13 44 13 65" stroke="#8aaf78" stroke-width="1" fill="none"/>
+      <ellipse cx="7" cy="13" rx="8" ry="5.5" fill="#5e8f52" opacity="0.9" transform="rotate(-20 7 13)"/>
+      <ellipse cx="10" cy="27" rx="7.5" ry="5" fill="#7aac6a" opacity="0.85" transform="rotate(-12 10 27)"/>
+      <ellipse cx="12" cy="43" rx="7" ry="4.5" fill="#5e8f52" opacity="0.80" transform="rotate(-6 12 43)"/>
+    </svg>
+    <svg width="52" height="36" viewBox="0 0 52 36" fill="none" style="margin-bottom:8px;">
+      <path d="M24 18 C20 14 10 8 5 11 C1 13 2 19 6 21 C11 24 20 22 24 18Z" stroke="#2a2a2a" stroke-width="1.1" fill="none"/>
+      <path d="M24 18 C20 22 10 28 5 25 C1 23 2 17 6 15 C11 12 20 14 24 18Z" stroke="#2a2a2a" stroke-width="1.1" fill="none"/>
+      <path d="M28 18 C32 14 42 8 47 11 C51 13 50 19 46 21 C41 24 32 22 28 18Z" stroke="#2a2a2a" stroke-width="1.1" fill="none"/>
+      <path d="M28 18 C32 22 42 28 47 25 C51 23 50 17 46 15 C41 12 32 14 28 18Z" stroke="#2a2a2a" stroke-width="1.1" fill="none"/>
+      <ellipse cx="26" cy="18" rx="4" ry="5" stroke="#2a2a2a" stroke-width="1.1" fill="none"/>
+    </svg>
+    <div class="sec-lbl">Dress Code</div>
+    <div class="sec-title">Elegante</div>
+    <div class="sec-text">Por favor, evitar el blanco 🤍</div>
+  </div>
+
+  <!-- REGALO — ramitas pequeñas tipo flor seca -->
+  <div class="sec">
+    <svg class="sprig" style="top:6px;right:-3px;width:34px;opacity:0.24;transform-origin:top right;animation:sw2 10s ease-in-out infinite;" viewBox="0 0 36 90" fill="none">
+      <path d="M34 3 Q26 20 22 40 Q18 62 18 84" stroke="#8aaf78" stroke-width="1.1" fill="none"/>
+      <path d="M22 18 Q32 12 34 20" stroke="#7a9e6a" stroke-width="0.9" fill="none"/>
+      <path d="M20 36 Q30 30 32 38" stroke="#7a9e6a" stroke-width="0.9" fill="none"/>
+      <path d="M19 54 Q28 48 30 56" stroke="#7a9e6a" stroke-width="0.8" fill="none"/>
+      <circle cx="34" cy="17" r="4" fill="#c9a96e" opacity="0.5"/>
+      <circle cx="32" cy="35" r="3.5" fill="#c4846a" opacity="0.45"/>
+      <circle cx="30" cy="53" r="3.5" fill="#c9a96e" opacity="0.42"/>
+    </svg>
+    <svg class="sprig" style="top:16px;left:-3px;width:30px;opacity:0.22;transform-origin:top left;animation:sw1 13s ease-in-out infinite;" viewBox="0 0 32 80" fill="none">
+      <path d="M2 2 Q9 16 12 32 Q15 50 15 72" stroke="#7a9470" stroke-width="1" fill="none"/>
+      <ellipse cx="8" cy="15" rx="9" ry="6" fill="#7aac6a" opacity="0.9" transform="rotate(-22 8 15)"/>
+      <ellipse cx="12" cy="31" rx="8.5" ry="5.5" fill="#a8c99a" opacity="0.85" transform="rotate(-14 12 31)"/>
+      <ellipse cx="14" cy="49" rx="8" ry="5" fill="#7aac6a" opacity="0.80" transform="rotate(-6 14 49)"/>
+    </svg>
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="margin-bottom:8px;">
+      <rect x="4" y="15" width="26" height="17" rx="2" stroke="#2a2a2a" stroke-width="1.2" fill="none"/>
+      <rect x="3" y="10" width="28" height="7" rx="2" stroke="#2a2a2a" stroke-width="1.2" fill="none"/>
+      <path d="M17 10 L17 32" stroke="#2a2a2a" stroke-width="1" opacity="0.3"/>
+      <path d="M17 10 Q13 6 11 4 Q9 2 11 2 Q13 2 17 10" stroke="#2a2a2a" stroke-width="1.1" fill="none"/>
+      <path d="M17 10 Q21 6 23 4 Q25 2 23 2 Q21 2 17 10" stroke="#2a2a2a" stroke-width="1.1" fill="none"/>
+    </svg>
+    <div class="sec-lbl">Regalos</div>
+    <div class="sec-title">Luna de Miel 🌙</div>
+    <div class="sec-text">Si deseás realizarnos un regalo podés colaborar con nuestra Luna de Miel...</div>
+    <div class="btn-outline" onclick="toggleDrop('gift','gc')" style="margin-top:12px;">Ver datos bancarios <span class="chevron" id="gc">▼</span></div>
+    <div class="dropdown" id="gift">
+      <div class="gift-list">
+        <div class="gift-row-item"><span>Titular</span><strong>Lara Sofia Parisse</strong></div>
+        <div class="gift-row-item"><span>CBU</span><strong>0720051988000038609554</strong></div>
+        <div class="gift-row-item"><span>Alias</span><strong>laraparisse</strong></div>
+        <div class="gift-row-item"><span>Banco</span><strong>Santander Río</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIESTA — flores secas doradas + eucalipto redondo -->
+  <div class="sec alt">
+    <svg class="sprig" style="top:8px;right:-3px;width:30px;opacity:0.22;transform-origin:top right;animation:sw3 11s ease-in-out infinite;" viewBox="0 0 32 82" fill="none">
+      <path d="M30 2 Q22 18 18 36 Q14 56 14 76" stroke="#8aaf78" stroke-width="1" fill="none"/>
+      <ellipse cx="22" cy="17" rx="9" ry="6.5" fill="#5e8f52" opacity="0.9" transform="rotate(20 22 17)"/>
+      <ellipse cx="17" cy="35" rx="8.5" ry="6" fill="#7aac6a" opacity="0.85" transform="rotate(14 17 35)"/>
+      <ellipse cx="15" cy="54" rx="8" ry="5.5" fill="#5e8f52" opacity="0.80" transform="rotate(8 15 54)"/>
+    </svg>
+    <svg class="sprig" style="top:10px;left:-3px;width:28px;opacity:0.20;transform-origin:top left;animation:sw4 10s ease-in-out infinite;" viewBox="0 0 30 78" fill="none">
+      <path d="M2 2 Q8 14 11 28 Q14 44 14 68" stroke="#7a9e6a" stroke-width="1" fill="none"/>
+      <path d="M10 13 Q4 9 3 15" stroke="#8aaf78" stroke-width="0.8" fill="none"/>
+      <path d="M12 27 Q6 23 5 29" stroke="#8aaf78" stroke-width="0.8" fill="none"/>
+      <path d="M13 43 Q7 39 6 45" stroke="#8aaf78" stroke-width="0.8" fill="none"/>
+      <circle cx="3" cy="13" r="4.5" fill="#c9a96e" opacity="0.5"/>
+      <circle cx="5" cy="27" r="4" fill="#c4846a" opacity="0.45"/>
+      <circle cx="6" cy="43" r="4" fill="#c9a96e" opacity="0.42"/>
+    </svg>
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;">
+      <circle cx="9" cy="24" r="4.5" stroke="#2a2a2a" stroke-width="1.2" fill="none"/>
+      <circle cx="23" cy="22" r="4.5" stroke="#2a2a2a" stroke-width="1.2" fill="none"/>
+      <path d="M13.5 24 L13.5 7 L27.5 5 L27.5 22" stroke="#2a2a2a" stroke-width="1.2" fill="none"/>
+      <path d="M13.5 11 L27.5 9" stroke="#2a2a2a" stroke-width="1" opacity="0.4"/>
+    </svg>
+    <div class="sec-lbl">¡Fiesta!</div>
+    <div class="sec-title">¿Qué canción no puede faltar?</div>
+    <div class="sec-text">¡Queremos crear una lista inolvidable!<br/>Mandanos tu tema favorito.</div>
+    <div class="btn-sage">Sugerir una canción</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <svg style="position:absolute;top:8px;right:-3px;width:50px;opacity:0.20;transform-origin:top right;animation:sw1 12s ease-in-out infinite;" viewBox="0 0 52 95" fill="none">
+      <path d="M50 3 Q40 22 35 44 Q30 66 28 88" stroke="#8aaf78" stroke-width="1" fill="none"/>
+      <ellipse cx="40" cy="22" rx="10" ry="7" fill="#7aac6a" opacity="0.9" transform="rotate(20 40 22)"/>
+      <ellipse cx="34" cy="44" rx="9.5" ry="6.5" fill="#a8c99a" opacity="0.85" transform="rotate(14 34 44)"/>
+      <ellipse cx="30" cy="65" rx="9" ry="6" fill="#7aac6a" opacity="0.80" transform="rotate(8 30 65)"/>
+    </svg>
+    <svg style="position:absolute;top:8px;left:-3px;width:44px;opacity:0.18;transform-origin:top left;animation:sw2 13s ease-in-out infinite;" viewBox="0 0 46 88" fill="none">
+      <path d="M2 3 Q12 20 16 40 Q20 60 22 84" stroke="#7a9e6a" stroke-width="1" fill="none"/>
+      <path d="M14 18 Q8 12 6 18" stroke="#8aaf78" stroke-width="0.9" fill="none"/>
+      <path d="M16 36 Q10 30 8 36" stroke="#8aaf78" stroke-width="0.9" fill="none"/>
+      <path d="M18 54 Q12 48 10 54" stroke="#8aaf78" stroke-width="0.8" fill="none"/>
+      <circle cx="6" cy="16" r="5" fill="#c9a96e" opacity="0.5"/>
+      <circle cx="8" cy="34" r="4.5" fill="#c4846a" opacity="0.45"/>
+      <circle cx="10" cy="52" r="4.5" fill="#c9a96e" opacity="0.42"/>
+    </svg>
+    <div class="footer-divider"></div>
+    <div class="footer-names">Lara & Lautaro</div>
+    <div class="footer-date">28 · 11 · 2026</div>
+    <div class="footer-heart">♥</div>
+    <div class="footer-thanks">¡Gracias por acompañarnos<br/>en este momento tan especial!</div>
+  </div>
+</div>
+
+<script>
+function tick(){
+  const diff=new Date('2026-11-28T18:00:00-03:00')-new Date();
+  if(diff<=0)return;
+  document.getElementById('d').textContent=String(Math.floor(diff/86400000)).padStart(3,'0');
+  document.getElementById('h').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('mi').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  document.getElementById('s').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+function toggleDrop(id,ch){document.getElementById(id).classList.toggle('open');document.getElementById(ch).classList.toggle('open');}
+const audio=document.getElementById('bgMusic');
+const note=document.getElementById('mn');
+let playing=false;
+function toggleMusic(){
+  if(playing){audio.pause();note.style.animationPlayState='paused';playing=false;}
+  else{audio.play().catch(()=>{});note.style.animationPlayState='running';playing=true;}
+}
+document.body.addEventListener('click',function tryAutoplay(){if(!playing)toggleMusic();document.body.removeEventListener('click',tryAutoplay);},{once:true});
+</script>
