@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Img, staticFile} from 'remotion';
+import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Img, Video, staticFile} from 'remotion';
 import {loadDefaultFonts} from '../presets/fonts';
 
 const FACE_LEFT = 580;
@@ -887,11 +887,20 @@ export const SpicyVSL: React.FC = () => {
   const imgProductPage = staticFile('assets/Imagen del modulo product apge que convierten.png');
   const imgSkoll = staticFile('assets/imagen de skoll general donde se ven todos los cursos.png');
   const img30dias = staticFile('assets/Captura de un video de entrenamiento 30 dias, se ve un pantallazo de estrategia para marcas chicas grandes con diferenciacion de campañas.png');
+  const videoSrc = staticFile('assets/SpicyVSL _ TEST - Remotion Studio - Google Chrome - 1 May 2026.mp4');
 
   return (
     <AbsoluteFill style={{backgroundColor: C.bg}}>
       {/* Layer 1: Base background */}
       <Background />
+
+      {/* Layer 2: Talking head video */}
+      <AbsoluteFill>
+        <Video
+          src={videoSrc}
+          style={{width: '100%', height: '100%', objectFit: 'cover'}}
+        />
+      </AbsoluteFill>
 
       {/* Layer 2: Section emotional vibe */}
       <SectionVibe />
