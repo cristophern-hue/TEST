@@ -477,66 +477,113 @@ function ImageReveal({src, startSec, endSec, side, badge}: ImageRevealProps) {
   const lf = frame - Math.round(startSec * fps);
   const total = Math.round((endSec - startSec) * fps);
 
-  const scaleV = interpolate(lf, [0, 18], [0.85, 1], {extrapolateRight: 'clamp'});
-  const opacity = interpolate(lf, [0, 12, total - 12, total], [0, 1, 1, 0], {extrapolateRight: 'clamp'});
+  // Cinematic zoom in — enters big, settles to final size
+  const imgScale = interpolate(lf, [0, total], [1.08, 1.0], {extrapolateRight: 'clamp'});
 
-  // Pulsing glow border
-  const glowPulse = Math.sin(frame * 0.12) * 0.5 + 0.5;
-  const glowSize = 16 + glowPulse * 12;
+  // Container scale (entrance pop)
+  const containerScale = interpolate(lf, [0, 20], [0.88, 1], {extrapolateRight: 'clamp'});
+
+  // Fade in/out
+  const opacity = interpolate(lf, [0, 14, total - 14, total], [0, 1, 1, 0], {extrapolateRight: 'clamp'});
+
+  // Border draw animation — goes from 0% to 100% perimeter
+  const borderProgress = interpolate(lf, [0, 25], [0, 1], {extrapolateRight: 'clamp'});
+
+  // Pulsing glow
+  const glowPulse = Math.sin(frame * 0.1) * 0.5 + 0.5;
+  const glowSize = 14 + glowPulse * 10;
+
+  // Badge slide up
+  const badgeY = interpolate(lf, [10, 24], [20, 0], {extrapolateRight: 'clamp'});
+  const badgeOpacity = interpolate(lf, [10, 24], [0, 1], {extrapolateRight: 'clamp'});
 
   return (
     <AbsoluteFill style={{pointerEvents: 'none'}}>
-      {/* Dark overlay behind image so subtitles remain readable */}
-      <AbsoluteFill style={{backgroundColor: `rgba(0,0,0,${opacity * 0.6})`}} />
+      {/* Dark cinematic overlay */}
+      <AbsoluteFill style={{backgroundColor: `rgba(0,0,0,${opacity * 0.65})`}} />
+
       <div style={{
         position: 'absolute',
         top: '50%',
         left: '50%',
-        transform: `translate(-50%, -50%) scale(${scaleV})`,
+        transform: `translate(-50%, -50%) scale(${containerScale})`,
         opacity,
-        width: '82%',
-        maxWidth: 1580,
+        width: '80%',
+        maxWidth: 1540,
       }}>
         <div style={{
           position: 'relative',
-          borderRadius: 12,
+          borderRadius: 10,
           overflow: 'hidden',
-          boxShadow: `0 0 ${glowSize}px ${C.red}, 0 0 ${glowSize * 2.5}px rgba(230,57,70,0.25), 0 20px 60px rgba(0,0,0,0.9)`,
-          border: `3px solid ${C.red}`,
+          boxShadow: `0 0 ${glowSize}px ${C.red}, 0 0 ${glowSize * 3}px rgba(230,57,70,0.2), 0 24px 70px rgba(0,0,0,0.95)`,
+          // Animated border via outline opacity trick
+          outline: `3px solid rgba(230,57,70,${borderProgress})`,
         }}>
-          <Img
-            src={src}
-            style={{
-              width: '100%',
-              height: 'auto',
-              display: 'block',
-              maxHeight: 820,
-              objectFit: 'contain',
-            }}
-          />
-          {/* Bottom gradient for badge readability */}
+          {/* Image with Ken Burns zoom */}
+          <div style={{overflow: 'hidden', borderRadius: 10}}>
+            <Img
+              src={src}
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+                maxHeight: 800,
+                objectFit: 'contain',
+                transform: `scale(${imgScale})`,
+                transformOrigin: 'center center',
+              }}
+            />
+          </div>
+
+          {/* Red color grade overlay — integrates image into video palette */}
           <div style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.6) 100%)',
+            background: 'rgba(180,20,30,0.12)',
+            mixBlendMode: 'multiply',
           }} />
+
+          {/* Vignette interna */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.55) 100%)',
+          }} />
+
+          {/* Bottom gradient for badge */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.75) 100%)',
+          }} />
+
+          {/* Badge */}
           {badge && (
             <div style={{
               position: 'absolute',
-              bottom: 10,
-              left: 10,
-              backgroundColor: C.red,
-              padding: '4px 14px',
-              borderRadius: 3,
+              bottom: 16,
+              left: 16,
+              opacity: badgeOpacity,
+              transform: `translateY(${badgeY}px)`,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
             }}>
-              <span style={{
-                fontFamily: 'Arial Black, sans-serif',
-                fontSize: 14,
-                fontWeight: 900,
-                color: C.white,
-                letterSpacing: 2,
-                textTransform: 'uppercase',
-              }}>{badge}</span>
+              <div style={{
+                backgroundColor: C.red,
+                padding: '6px 18px',
+                borderRadius: 4,
+                boxShadow: `0 0 14px ${C.red}88`,
+              }}>
+                <span style={{
+                  fontFamily: 'Arial Black, sans-serif',
+                  fontSize: 16,
+                  fontWeight: 900,
+                  color: C.white,
+                  letterSpacing: 2,
+                  textTransform: 'uppercase',
+                }}>{badge}</span>
+              </div>
             </div>
           )}
         </div>
