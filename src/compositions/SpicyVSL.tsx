@@ -674,8 +674,8 @@ function FaceGuide() {
 export const SpicyVSL: React.FC = () => {
   loadDefaultFonts();
 
-  const img3 = staticFile('assets/Copia de CONDIMENTO  Propuesta comercial Equilibria (3).png');
-  const img4 = staticFile('assets/Copia de CONDIMENTO Propuesta comercial Equilibria (4).png');
+  const img3 = staticFile('assets/resultados-roas.png');
+  const img4 = staticFile('assets/autoridad.png');
 
   return (
     <AbsoluteFill style={{backgroundColor: C.bg}}>
