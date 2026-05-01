@@ -477,33 +477,32 @@ function ImageReveal({src, startSec, endSec, side, badge}: ImageRevealProps) {
   const lf = frame - Math.round(startSec * fps);
   const total = Math.round((endSec - startSec) * fps);
 
-  const slideX = interpolate(lf, [0, 12], [side === 'left' ? -80 : 80, 0], {extrapolateRight: 'clamp'});
-  const opacity = interpolate(lf, [0, 10, total - 10, total], [0, 1, 1, 0], {extrapolateRight: 'clamp'});
-  const scaleV = interpolate(lf, [0, 12], [0.9, 1], {extrapolateRight: 'clamp'});
+  const scaleV = interpolate(lf, [0, 18], [0.85, 1], {extrapolateRight: 'clamp'});
+  const opacity = interpolate(lf, [0, 12, total - 12, total], [0, 1, 1, 0], {extrapolateRight: 'clamp'});
 
   // Pulsing glow border
-  const glowPulse = Math.sin(frame * 0.15) * 0.5 + 0.5;
-  const glowSize = 8 + glowPulse * 6;
-
-  const posStyle: React.CSSProperties = side === 'left'
-    ? {left: 30, maxWidth: FACE_LEFT - 50}
-    : {right: 30, maxWidth: 1920 - FACE_RIGHT - 50};
+  const glowPulse = Math.sin(frame * 0.12) * 0.5 + 0.5;
+  const glowSize = 16 + glowPulse * 12;
 
   return (
     <AbsoluteFill style={{pointerEvents: 'none'}}>
+      {/* Dark overlay behind image so subtitles remain readable */}
+      <AbsoluteFill style={{backgroundColor: `rgba(0,0,0,${opacity * 0.6})`}} />
       <div style={{
         position: 'absolute',
         top: '50%',
-        transform: `translateY(-50%) translateX(${slideX}px) scale(${scaleV})`,
+        left: '50%',
+        transform: `translate(-50%, -50%) scale(${scaleV})`,
         opacity,
-        ...posStyle,
+        width: '82%',
+        maxWidth: 1580,
       }}>
         <div style={{
           position: 'relative',
-          borderRadius: 8,
+          borderRadius: 12,
           overflow: 'hidden',
-          boxShadow: `0 0 ${glowSize}px ${C.red}, 0 0 ${glowSize * 2}px rgba(230,57,70,0.3), 0 8px 32px rgba(0,0,0,0.8)`,
-          border: `2px solid ${C.red}`,
+          boxShadow: `0 0 ${glowSize}px ${C.red}, 0 0 ${glowSize * 2.5}px rgba(230,57,70,0.25), 0 20px 60px rgba(0,0,0,0.9)`,
+          border: `3px solid ${C.red}`,
         }}>
           <Img
             src={src}
@@ -511,15 +510,15 @@ function ImageReveal({src, startSec, endSec, side, badge}: ImageRevealProps) {
               width: '100%',
               height: 'auto',
               display: 'block',
-              maxHeight: 340,
-              objectFit: 'cover',
+              maxHeight: 820,
+              objectFit: 'contain',
             }}
           />
-          {/* Dark overlay for readability */}
+          {/* Bottom gradient for badge readability */}
           <div style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.5) 100%)',
+            background: 'linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.6) 100%)',
           }} />
           {badge && (
             <div style={{
@@ -541,6 +540,166 @@ function ImageReveal({src, startSec, endSec, side, badge}: ImageRevealProps) {
             </div>
           )}
         </div>
+      </div>
+    </AbsoluteFill>
+  );
+}
+
+// ─── BELIEF CARDS (sec 40-52) ────────────────────────────────────────────────
+// Las 3 falsas creencias aparecen como tarjetas y se tachan en "PERO NO."
+
+function BeliefCards() {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const sec = frame / fps;
+
+  if (sec < 39 || sec > 53) return null;
+
+  const beliefs = ['EL ALGORITMO', 'EL MERCADO', 'LA COMPETENCIA'];
+  const showSecs = [40, 43, 46];
+  const xStartFrame = Math.round(49 * fps);
+  const xProgress = interpolate(frame - xStartFrame, [0, 10], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const containerEnd = Math.round(53 * fps);
+
+  return (
+    <AbsoluteFill style={{pointerEvents: 'none'}}>
+      <div style={{position: 'absolute', left: 40, top: '50%', transform: 'translateY(-50%)', maxWidth: FACE_LEFT - 60}}>
+        {beliefs.map((belief, i) => {
+          const showFrame = Math.round(showSecs[i] * fps);
+          if (frame < showFrame) return null;
+          const lf = frame - showFrame;
+          const opacity = interpolate(frame, [showFrame, showFrame + 8, containerEnd - 8, containerEnd], [0, 1, 1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+          const slideX = interpolate(lf, [0, 8], [-40, 0], {extrapolateRight: 'clamp'});
+
+          return (
+            <div key={belief} style={{opacity, transform: `translateX(${slideX}px)`, marginBottom: 14, position: 'relative'}}>
+              <div style={{
+                backgroundColor: 'rgba(230,57,70,0.12)',
+                border: `1px solid rgba(230,57,70,0.35)`,
+                borderRadius: 6,
+                padding: '10px 20px',
+                position: 'relative',
+                overflow: 'hidden',
+              }}>
+                <span style={{fontFamily: 'Arial Black, sans-serif', fontSize: 30, fontWeight: 900, color: C.white, textTransform: 'uppercase', letterSpacing: 2}}>
+                  {belief}
+                </span>
+                {xProgress > 0 && (
+                  <div style={{position: 'absolute', top: '50%', left: 0, height: 3, width: `${xProgress * 100}%`, backgroundColor: C.red, transform: 'translateY(-50%)', boxShadow: `0 0 8px ${C.red}`}} />
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </AbsoluteFill>
+  );
+}
+
+// ─── 100 MARCAS COUNTER (sec 55-65) ──────────────────────────────────────────
+
+function MarcasCounter() {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const sec = frame / fps;
+
+  if (sec < 54 || sec > 66) return null;
+
+  const lf = frame - Math.round(54 * fps);
+  const total = Math.round(12 * fps);
+  const progress = spring({fps, frame: lf, config: {damping: 22, stiffness: 45}});
+  const count = Math.round(interpolate(progress, [0, 1], [0, 100]));
+  const opacity = interpolate(lf, [0, 8, total - 8, total], [0, 1, 1, 0], {extrapolateRight: 'clamp'});
+
+  return (
+    <AbsoluteFill style={{pointerEvents: 'none'}}>
+      <div style={{position: 'absolute', right: 50, top: '50%', transform: 'translateY(-50%)', textAlign: 'right', maxWidth: 1920 - FACE_RIGHT - 40, opacity}}>
+        <div style={{fontFamily: 'Arial Black, sans-serif', fontSize: 110, fontWeight: 900, color: C.yellow, lineHeight: 1, textShadow: `0 0 50px ${C.yellow}88`}}>
+          {count}+
+        </div>
+        <div style={{fontFamily: 'Arial, sans-serif', fontSize: 18, color: C.white, opacity: 0.6, letterSpacing: 3, textTransform: 'uppercase', marginTop: 4}}>
+          MARCAS AUDITADAS
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+}
+
+// ─── SECTION ICON ─────────────────────────────────────────────────────────────
+
+function SectionIcon() {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const sec = frame / fps;
+
+  const icons = [
+    {s: 68, e: 72, icon: '⚙️'},
+    {s: 100, e: 104, icon: '🎯'},
+    {s: 132, e: 136, icon: '📄'},
+  ];
+
+  const current = icons.find(ic => sec >= ic.s && sec < ic.e);
+  if (!current) return null;
+
+  const lf = frame - Math.round(current.s * fps);
+  const total = Math.round((current.e - current.s) * fps);
+  const scaleV = spring({fps, frame: lf, config: {damping: 10, stiffness: 250}});
+  const opacity = interpolate(lf, [0, 4, total - 4, total], [0, 1, 1, 0], {extrapolateRight: 'clamp'});
+
+  return (
+    <AbsoluteFill style={{pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      <div style={{opacity, transform: `scale(${scaleV})`, fontSize: 130, lineHeight: 1, textAlign: 'center'}}>
+        {current.icon}
+      </div>
+    </AbsoluteFill>
+  );
+}
+
+// ─── PAIN CHECKLIST (sec 162-178) ────────────────────────────────────────────
+
+function PainChecklist() {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const sec = frame / fps;
+
+  if (sec < 161 || sec > 178) return null;
+
+  const items = [
+    {s: 162, text: 'TRÁFICO', ok: true},
+    {s: 165, text: 'VISITAS', ok: true},
+    {s: 168, text: 'CARRITOS', ok: true},
+    {s: 171, text: 'VENTAS = 0', ok: false},
+  ];
+
+  const containerOpacity = interpolate(frame, [Math.round(161 * fps), Math.round(162 * fps), Math.round(177 * fps), Math.round(178 * fps)], [0, 1, 1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+
+  return (
+    <AbsoluteFill style={{pointerEvents: 'none'}}>
+      <div style={{position: 'absolute', left: 40, top: '50%', transform: 'translateY(-50%)', maxWidth: FACE_LEFT - 60, opacity: containerOpacity}}>
+        {items.map((item) => {
+          const showFrame = Math.round(item.s * fps);
+          if (frame < showFrame) return null;
+          const lf = frame - showFrame;
+          const slideX = interpolate(lf, [0, 8], [-30, 0], {extrapolateRight: 'clamp'});
+          const iconScale = spring({fps, frame: lf, config: {damping: 8, stiffness: 350}});
+
+          return (
+            <div key={item.text} style={{display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16, transform: `translateX(${slideX}px)`}}>
+              <div style={{fontSize: 38, transform: `scale(${iconScale})`, lineHeight: 1}}>{item.ok ? '✅' : '❌'}</div>
+              <div style={{
+                fontFamily: 'Arial Black, sans-serif',
+                fontSize: 36,
+                fontWeight: 900,
+                color: item.ok ? C.white : C.red,
+                textTransform: 'uppercase',
+                letterSpacing: 2,
+                textShadow: item.ok ? 'none' : `0 0 25px ${C.red}`,
+              }}>
+                {item.text}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </AbsoluteFill>
   );
@@ -713,8 +872,20 @@ export const SpicyVSL: React.FC = () => {
       {/* Layer 7: Section transition labels */}
       <SectionLabels />
 
-      {/* Layer 8: ROAS animated counter */}
+      {/* Layer 8: Section icons */}
+      <SectionIcon />
+
+      {/* Layer 9: ROAS animated counter */}
       <ROASCounter />
+
+      {/* Layer 10: Belief cards with strikethrough (sec 40-52) */}
+      <BeliefCards />
+
+      {/* Layer 11: 100 marcas counter (sec 55-65) */}
+      <MarcasCounter />
+
+      {/* Layer 12: Pain checklist (sec 162-178) */}
+      <PainChecklist />
 
       {/* Layer 9: Lateral keyword overlays */}
       <LateralOverlays />
