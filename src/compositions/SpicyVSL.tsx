@@ -835,6 +835,11 @@ export const SpicyVSL: React.FC = () => {
 
   const img3 = staticFile('assets/resultados-roas.png');
   const img4 = staticFile('assets/autoridad.png');
+  const imgFormula = staticFile('assets/La spicy ad formula, iamgen de un video del modulo hay dibujos y todo el item del sistema.png');
+  const imgCreativos = staticFile('assets/imagen del modulo diseño de creativos con AI se ve parte de un video.png');
+  const imgProductPage = staticFile('assets/Imagen del modulo product apge que convierten.png');
+  const imgSkoll = staticFile('assets/imagen de skoll general donde se ven todos los cursos.png');
+  const img30dias = staticFile('assets/Captura de un video de entrenamiento 30 dias, se ve un pantallazo de estrategia para marcas chicas grandes con diferenciacion de campañas.png');
 
   return (
     <AbsoluteFill style={{backgroundColor: C.bg}}>
@@ -851,20 +856,20 @@ export const SpicyVSL: React.FC = () => {
       <GlitchIntro />
 
       {/* Layer 5: Proof images — aparecen en los laterales */}
-      <ImageReveal
-        src={img3}
-        startSec={225}
-        endSec={237}
-        side="right"
-        badge="CASO REAL ✓"
-      />
-      <ImageReveal
-        src={img4}
-        startSec={241}
-        endSec={255}
-        side="right"
-        badge="7+ AÑOS DE EXPERIENCIA"
-      />
+      {/* Spicy Ad Formula — sec 205 */}
+      <ImageReveal src={imgFormula} startSec={205} endSec={213} side="right" badge="EL SISTEMA COMPLETO" />
+      {/* Creativos con IA — sec 214 */}
+      <ImageReveal src={imgCreativos} startSec={214} endSec={221} side="right" badge="MÓDULO: CREATIVOS CON IA" />
+      {/* Páginas que convierten — sec 217 */}
+      <ImageReveal src={imgProductPage} startSec={217} endSec={225} side="left" badge="MÓDULO: PRODUCT PAGE" />
+      {/* Resultados ROAS — sec 225 */}
+      <ImageReveal src={img3} startSec={225} endSec={237} side="right" badge="CASO REAL ✓" />
+      {/* Autoridad — sec 241 */}
+      <ImageReveal src={img4} startSec={241} endSec={255} side="right" badge="7+ AÑOS DE EXPERIENCIA" />
+      {/* Skoll overview — sec 260 */}
+      <ImageReveal src={imgSkoll} startSec={260} endSec={272} side="right" badge="LA COMUNIDAD" />
+      {/* 30 días — sec 281 */}
+      <ImageReveal src={img30dias} startSec={281} endSec={290} side="right" badge="DESAFÍO 30 DÍAS" />
 
       {/* Layer 6: Vignette (focuses attention on center) */}
       <Vignette />
