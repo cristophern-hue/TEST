@@ -887,7 +887,7 @@ export const SpicyVSL: React.FC = () => {
   const imgProductPage = staticFile('assets/Imagen del modulo product apge que convierten.png');
   const imgSkoll = staticFile('assets/imagen de skoll general donde se ven todos los cursos.png');
   const img30dias = staticFile('assets/Captura de un video de entrenamiento 30 dias, se ve un pantallazo de estrategia para marcas chicas grandes con diferenciacion de campañas.png');
-  const videoSrc = staticFile('assets/spicyvsl_fixed.mp4');
+  const videoSrc = staticFile('assets/spicyvsl_v2.mp4');
 
   return (
     <AbsoluteFill style={{backgroundColor: C.bg}}>
